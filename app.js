@@ -1,7 +1,8 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
-const path = require('path');
+const swaggerUi = require('swagger-ui-express');
+const swaggerSpec = require('./swagger');
 
 const authRoutes = require('./routes/auth.routes');
 const categoryRoutes = require('./routes/category.routes');
@@ -39,8 +40,14 @@ app.use('/api/prices', priceRoutes);
 app.use('/api/configurations', configurationRoutes);
 app.use('/api', pdfRoutes);
 
-// Route test API
-app.get('/api', (req, res) => {
+// Documentation Swagger
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec, {
+  customCss: '.swagger-ui .topbar { display: none }',
+  customSiteTitle: 'API ConfigurateurPC - Documentation'
+}));
+
+// Route de test
+app.get('/', (req, res) => {
   res.send('API Configurateur PC opérationnelle');
 });
 
