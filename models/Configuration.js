@@ -1,4 +1,5 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
+
 
 const configurationSchema = new mongoose.Schema(
   {
@@ -25,4 +26,4 @@ const configurationSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-export default mongoose.model("Configuration", configurationSchema);
+module.exports = mongoose.model("Configuration", configurationSchema);

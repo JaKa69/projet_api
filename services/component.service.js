@@ -1,15 +1,15 @@
-import Component from "../models/Component.js";
+const Component = require("../models/Component.js");
 
-export const getAll = (filters) =>
+module.exports.getAll = (filters) =>
   Component.find(filters).populate("category");
 
-export const getById = (id) =>
+module.exports.getById = (id) =>
   Component.findById(id).populate("category");
 
-export const create = (data) => Component.create(data);
+module.exports.create = (data) => Component.create(data);
 
-export const update = (id, data) =>
+module.exports.update = (id, data) =>
   Component.findByIdAndUpdate(id, data, { new: true });
 
-export const remove = (id) =>
+module.exports.remove = (id) =>
   Component.findByIdAndDelete(id);

@@ -1,4 +1,5 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
+
 
 const merchantSchema = new mongoose.Schema(
   {
@@ -10,4 +11,4 @@ const merchantSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-export default mongoose.model("Merchant", merchantSchema);
+module.exports = mongoose.model("Merchant", merchantSchema);

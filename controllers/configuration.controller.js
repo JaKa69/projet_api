@@ -1,19 +1,19 @@
-import * as configService from "../services/configuration.service.js";
+const configService =require("../services/configuration.service.js");
 
-export const getMyConfigurations = async (req, res) => {
+module.exports.getMyConfigurations = async (req, res) => {
   res.json(await configService.getByUser(req.user.id));
 };
 
-export const getById = async (req, res) => {
+module.exports.getById = async (req, res) => {
   res.json(await configService.getById(req.params.id));
 };
 
-export const create = async (req, res) => {
+module.exports.create = async (req, res) => {
   const config = await configService.create(req.user.id, req.body);
   res.status(201).json(config);
 };
 
-export const addComponent = async (req, res) => {
+module.exports.addComponent = async (req, res) => {
   const config = await configService.addComponent(
     req.params.id,
     req.body
@@ -21,7 +21,7 @@ export const addComponent = async (req, res) => {
   res.json(config);
 };
 
-export const removeComponent = async (req, res) => {
+module.exports.removeComponent = async (req, res) => {
   const config = await configService.removeComponent(
     req.params.id,
     req.params.componentId
@@ -29,7 +29,7 @@ export const removeComponent = async (req, res) => {
   res.json(config);
 };
 
-export const remove = async (req, res) => {
+module.exports.remove = async (req, res) => {
   await configService.remove(req.params.id);
   res.status(204).end();
 };

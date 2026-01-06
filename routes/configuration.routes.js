@@ -1,16 +1,16 @@
-import express from "express";
-import * as controller from "../controllers/configuration.controller.js";
-import { auth } from "../middlewares/auth.middleware.js";
+const express = require("express");
+const controller = require("../controllers/configuration.controller.js");
+const authMiddleware = require("../middlewares/auth.middleware.js");
 
 const router = express.Router();
 
-router.get("/", auth, controller.getMyConfigurations);
-router.get("/:id", auth, controller.getById);
-router.post("/", auth, controller.create);
+router.get("/", authMiddleware.auth, controller.getMyConfigurations);
+router.get("/:id", authMiddleware.auth, controller.getById);
+router.post("/", authMiddleware.auth, controller.create);
 
-router.post("/:id/components", auth, controller.addComponent);
-router.delete("/:id/components/:componentId", auth, controller.removeComponent);
+router.post("/:id/components", authMiddleware.auth, controller.addComponent);
+router.delete("/:id/components/:componentId", authMiddleware.auth, controller.removeComponent);
 
-router.delete("/:id", auth, controller.remove);
+router.delete("/:id", authMiddleware.auth, controller.remove);
 
-export default router;
+module.exports = router;

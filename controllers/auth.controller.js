@@ -1,6 +1,6 @@
-import * as authService from "../services/auth.service.js";
+const authService = require("../services/auth.service.js");
 
-export const register = async (req, res) => {
+module.exports.register = async (req, res) => {
   try {
     const user = await authService.register(req.body);
     res.status(201).json(user);
@@ -9,7 +9,7 @@ export const register = async (req, res) => {
   }
 };
 
-export const login = async (req, res) => {
+module.exports.login = async (req, res) => {
   try {
     const result = await authService.login(req.body.email, req.body.password);
     res.json(result);

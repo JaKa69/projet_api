@@ -1,8 +1,8 @@
-import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
-import User from "../models/User.js";
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+const User = require("../models/User.js");
 
-export const register = async (data) => {
+module.exports.register = async (data) => {
   const hashedPassword = await bcrypt.hash(data.password, 10);
 
   return User.create({
@@ -11,7 +11,7 @@ export const register = async (data) => {
   });
 };
 
-export const login = async (email, password) => {
+module.exports.login = async (email, password) => {
   const user = await User.findOne({ email });
   if (!user) throw new Error("Utilisateur introuvable");
 

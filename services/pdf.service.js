@@ -1,7 +1,7 @@
-import PDFDocument from "pdfkit";
-import Configuration from "../models/Configuration.js";
+const PDFDocument = require("pdfkit");
+const Configuration = require("../models/Configuration.js");
 
-export const generateConfigPdf = async (configId, res) => {
+module.exports.generateConfigPdf = async (configId, res) => {
   const config = await Configuration.findById(configId)
     .populate("components.component")
     .populate("components.price");

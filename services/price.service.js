@@ -1,12 +1,12 @@
-import Price from "../models/Price.js";
+const Price = require("../models/Price.js");
 
-export const getByComponent = (componentId) =>
+module.exports.getByComponent = (componentId) =>
   Price.find({ component: componentId }).populate("merchant");
 
-export const create = (data) => Price.create(data);
+module.exports.create = (data) => Price.create(data);
 
-export const update = (id, data) =>
+module.exports.update = (id, data) =>
   Price.findByIdAndUpdate(id, data, { new: true });
 
-export const remove = (id) =>
+module.exports.remove = (id) =>
   Price.findByIdAndDelete(id);

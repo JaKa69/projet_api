@@ -1,4 +1,5 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
+
 
 const priceSchema = new mongoose.Schema(
   {
@@ -17,4 +18,4 @@ const priceSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-export default mongoose.model("Price", priceSchema);
+module.exports = mongoose.model("Price", priceSchema);

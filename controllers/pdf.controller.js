@@ -1,6 +1,6 @@
-import { generateConfigPdf } from "../services/pdf.service.js";
+const generateConfigPdf = require("../services/pdf.service.js");
 
-export const exportPdf = async (req, res) => {
+module.exports.exportPdf = async (req, res) => {
   try {
     await generateConfigPdf(req.params.id, res);
   } catch (err) {

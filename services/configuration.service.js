@@ -1,5 +1,5 @@
-import Configuration from "../models/Configuration.js";
-import Price from "../models/Price.js";
+const Configuration = require("../models/Configuration.js");
+const Price = require("../models/Price.js");
 
 const calculateTotal = async (components) => {
   let total = 0;
@@ -12,17 +12,17 @@ const calculateTotal = async (components) => {
   return total;
 };
 
-export const getByUser = (userId) =>
+module.exports.getByUser = (userId) =>
   Configuration.find({ user: userId })
     .populate("components.component")
     .populate("components.price");
 
-export const getById = (id) =>
+module.exports.getById = (id) =>
   Configuration.findById(id)
     .populate("components.component")
     .populate("components.price");
 
-export const create = async (userId, data) => {
+module.exports.create = async (userId, data) => {
   const totalPrice = await calculateTotal(data.components);
 
   return Configuration.create({
@@ -33,14 +33,14 @@ export const create = async (userId, data) => {
   });
 };
 
-export const addComponent = async (configId, componentData) => {
+module.exports.addComponent = async (configId, componentData) => {
   const config = await Configuration.findById(configId);
   config.components.push(componentData);
   config.totalPrice = await calculateTotal(config.components);
   return config.save();
 };
 
-export const removeComponent = async (configId, componentId) => {
+module.exports.removeComponent = async (configId, componentId) => {
   const config = await Configuration.findById(configId);
 
   config.components = config.components.filter(
@@ -51,5 +51,5 @@ export const removeComponent = async (configId, componentId) => {
   return config.save();
 };
 
-export const remove = (id) =>
+module.exports.remove = (id) =>
   Configuration.findByIdAndDelete(id);

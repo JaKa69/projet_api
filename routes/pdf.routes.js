@@ -1,9 +1,9 @@
-import express from "express";
-import { exportPdf } from "../controllers/pdf.controller.js";
-import { auth } from "../middlewares/auth.middleware.js";
+const express = require("express");
+const pdfController = require("../controllers/pdf.controller.js");
+const authMiddleware = require("../middlewares/auth.middleware.js");
 
 const router = express.Router();
 
-router.get("/configurations/:id/pdf", auth, exportPdf);
+router.get("/configurations/:id/pdf", authMiddleware.auth, pdfController.exportPdf);
 
-export default router;
+module.exports = router;
