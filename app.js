@@ -3,6 +3,7 @@ const dotenv = require('dotenv');
 const mongoose = require('mongoose');
 const swaggerUi = require('swagger-ui-express');
 const swaggerSpec = require('./swagger');
+const path = require('path');
 
 const authRoutes = require('./routes/auth.routes');
 const categoryRoutes = require('./routes/category.routes');
