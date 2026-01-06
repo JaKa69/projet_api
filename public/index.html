@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>BackOffice – Configurateur PC</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>BackOffice – API Configurateur PC</h1>
+
+  <!-- Formulaire login -->
+  <section>
+    <h2>Connexion Admin</h2>
+    <form id="login-form">
+      <input type="email" id="email" placeholder="Email" required>
+      <input type="password" id="password" placeholder="Mot de passe" required>
+      <button type="submit">Se connecter</button>
+    </form>
+    <p id="login-status"></p>
+  </section>
+
+  <!-- Statut API -->
+  <section>
+    <h2>Statut de l’API</h2>
+    <p id="api-status">Connexion en cours...</p>
+  </section>
+
+  <!-- Ressources -->
+  <section>
+    <h2>Catégories</h2>
+    <ul id="categories-list"></ul>
+  </section>
+
+  <section>
+    <h2>Composants</h2>
+    <ul id="components-list"></ul>
+  </section>
+
+  <section>
+    <h2>Marchands</h2>
+    <ul id="merchants-list"></ul>
+  </section>
+
+  <section>
+    <h2>Prix</h2>
+    <ul id="prices-list"></ul>
+  </section>
+
+  <section>
+    <h2>Configurations</h2>
+    <ul id="configurations-list"></ul>
+  </section>
+
+  <section>
+    <h2>Utilisateurs</h2>
+    <ul id="users-list"></ul>
+  </section>
+
+<script src="script.js"></script>
+</body>
+</html>
