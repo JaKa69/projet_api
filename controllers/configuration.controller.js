@@ -5,8 +5,14 @@ module.exports.getMyConfigurations = async (req, res) => {
 };
 
 module.exports.getById = async (req, res) => {
-  res.json(await configService.getById(req.params.id));
+  try {
+    const config = await configService.getById(req.params.id, req.user);
+    res.json(config);
+  } catch (e) {
+    res.status(403).json({ message: e.message });
+  }
 };
+
 
 module.exports.create = async (req, res) => {
   const config = await configService.create(req.user.id, req.body);

@@ -1,17 +1,10 @@
-const User = require("../models/User.js");
+const User = require("../models/User");
 
-// récupère un user
-module.exports.getUser = async(query) =>{
-    try{
-        let user = await User.findOne(query);
-        return user;
-    }catch(e) {
-        throwError("Error while query all one user : " + e);
-}}
-// crée un user
-module.exports.createUser = async(user) =>{
-    try {
-        return await User.save();
-    } catch(e) {
-        throwError("Error while create user : "+e);
-}}
+module.exports.getUser = async (query) => {
+  return await User.findOne(query);
+};
+
+module.exports.createUser = async (data) => {
+  const user = new User(data);
+  return await user.save();
+};
