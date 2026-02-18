@@ -37,9 +37,9 @@ loginForm.addEventListener("submit", e => {
 // -------- STATUT API --------
 fetch(`${API_URL}`)
     .then(res => res.text())
-    .then(() => {
+    .then((res) => {
         const status = document.getElementById("api-status");
-        status.textContent = "API connectée et opérationnelle";
+        status.textContent = "API connectée et opérationnelle, " +res;
         status.className = "connected";
     })
     .catch(() => {
