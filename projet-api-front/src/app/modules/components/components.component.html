@@ -1,0 +1,13 @@
+<h2>Liste des composants</h2>
+<button (click)="goToAdd()">Ajouter un composant</button>
+
+<ul>
+  @for (item of components; track item.id) {
+      <li>
+        {{ item.name }}
+        <button (click)="goToEdit(item.id)">Modifier</button>
+      </li>
+  } @empty {
+      <p>Aucun composant trouvé</p>
+  }
+</ul>
