@@ -1,12 +1,19 @@
-<nav class="header-nav">
-    <a
-        routerLink="/login"
-        routerLinkActive="active"
-        [routerLinkActiveOptions]="{ exact: true }"
-    >Login</a>
-    <a routerLink="/users" routerLinkActive="active">Users</a>
-    <a routerLink="/merchants" routerLinkActive="active">Merchants</a>
-    <a routerLink="/categories" routerLinkActive="active">Categories</a>
-    <a routerLink="/configurations" routerLinkActive="active">Configurations</a>
-    <a routerLink="/components" routerLinkActive="active">Components</a>
-</nav>
+<header class="header">
+    <nav>
+        @for (item of menuItems; track item.label) {
+            <a (click)="navigate(item.path)">
+              {{ item.label }}
+            </a>
+        }
+        @if (isLoggedIn) {
+            <span>
+                Bonjour, {{ authService.user()?.email }}
+                <button (click)="logout()">Déconnexion</button>
+            </span>
+        } @else {
+            <span>
+                <button (click)="navigate('/login')">Connexion</button>
+            </span>
+        }
+    </nav>
+</header>

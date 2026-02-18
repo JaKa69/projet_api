@@ -1,9 +1,9 @@
 const express = require('express');
 const dotenv = require('dotenv');
-const mongoose = require('mongoose');
 const swaggerUi = require('swagger-ui-express');
 const swaggerSpec = require('./swagger');
 const path = require('path');
+const cors = require('cors');
 
 const authRoutes = require('./routes/auth.routes');
 const categoryRoutes = require('./routes/category.routes');
@@ -11,14 +11,15 @@ const componentRoutes = require('./routes/component.routes');
 const merchantRoutes = require('./routes/merchant.routes');
 const priceRoutes = require('./routes/price.routes');
 const configurationRoutes = require('./routes/configuration.routes');
+const userconfigurationRoutes = require('./routes/user.routes');
 const pdfRoutes = require('./routes/pdf.routes');
 
 dotenv.config();
 
 const app = express();
+app.use(cors({ origin: 'http://127.0.0.1:4200' }));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
-
 // Routes API
 app.use('/api/auth', authRoutes);
 app.use('/api/categories', categoryRoutes);
@@ -26,6 +27,7 @@ app.use('/api/components', componentRoutes);
 app.use('/api/merchants', merchantRoutes);
 app.use('/api/prices', priceRoutes);
 app.use('/api/configurations', configurationRoutes);
+app.use('/api/user', userconfigurationRoutes);
 app.use('/api', pdfRoutes);
 
 // Swagger
