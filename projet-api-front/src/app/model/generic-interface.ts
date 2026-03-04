@@ -81,7 +81,6 @@ export const CATEGORY_CONFIG: EntityConfig = {
   ]
 };
 
-
 export const COMPONENT_CONFIG: EntityConfig = {
   title: 'Composants',
 
@@ -109,5 +108,35 @@ export const COMPONENT_CONFIG: EntityConfig = {
     { field: 'description', label: 'Description', type: 'text' },
     // { field: 'specifications', label: 'Description', type: 'text' },
     // { field: 'image', label: 'Description', type: 'text' }
+  ]
+};
+
+export const CONFIGURATION_CONFIG: EntityConfig = {
+  title: 'Configurations',
+
+  routes: {
+    list: '/configurations',
+    create: '/configurations/new',
+    edit: '/configurations'
+  },
+//TODO
+//   columns: [
+//     { field: 'title', label: 'Title' },
+//     { field: 'category', label: 'Category' },
+//     { field: 'brand', label: 'Brand' },
+//     { field: 'model', label: 'Model' },
+//     { field: 'description', label: 'Description' },
+//     { field: 'createdAt', label: 'Description' },
+//     { field: 'updatedAt', label: 'Description' },
+//   ],
+
+//   fields: [
+//     { field: 'category', label: 'Nom', type: 'text' },
+//     { field: 'brand', label: 'Description', type: 'text' },
+//     { field: 'title', label: 'Description', type: 'text' },
+//     { field: 'model', label: 'Description', type: 'text' },
+//     { field: 'description', label: 'Description', type: 'text' },
+//     { field: 'specifications', label: 'Description', type: 'text' },
+//     { field: 'image', label: 'Description', type: 'text' }
   ]
 };

@@ -37,14 +37,44 @@ export const routes: Routes = [
                 import('./modules/merchants/merchants.component').then(c => c.MerchantsComponent),
             },
             {
+                path: 'merchants/add',
+                loadComponent: () =>
+                import('./modules/merchants/merchants-detail/merchants-detail').then(c => c.MerchantsDetail),
+            },
+            {
+                path: 'merchants/:id',
+                loadComponent: () =>
+                import('./modules/merchants/merchants-detail/merchants-detail').then(c => c.MerchantsDetail),
+            },
+            {
                 path: 'categories',
                 loadComponent: () =>
                 import('./modules/category/category.component').then(c => c.CategoryComponent),
             },
             {
+                path: 'categories/add',
+                loadComponent: () =>
+                import('./modules/category/category-detail/category-detail').then(c => c.CategoryDetail),
+            },
+            {
+                path: 'categories/:id',
+                loadComponent: () =>
+                import('./modules/category/category-detail/category-detail').then(c => c.CategoryDetail),
+            },
+            {
                 path: 'configurations',
                 loadComponent: () =>
                 import('./modules/configurations/configurations.component').then(c => c.ConfigurationsComponent),
+            },
+            {
+                path: 'configurations/add',
+                loadComponent: () =>
+                import('./modules/configurations/configuration-detail/configuration-detail').then(c => c.ConfigurationDetail),
+            },
+            {
+                path: 'configurations/:id',
+                loadComponent: () =>
+                import('./modules/configurations/configuration-detail/configuration-detail').then(c => c.ConfigurationDetail),
             },
             {
                 path: 'components',
