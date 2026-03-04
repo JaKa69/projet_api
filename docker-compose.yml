@@ -1,7 +1,6 @@
 version: '3.8'
 
 services:
-
   mongo:
     image: mongo:7
     container_name: mongo
@@ -27,7 +26,6 @@ services:
       - JWT_EXPIRATION=3600000
     depends_on:
       - mongo
-
   frontend:
     build: ./projet-api-front
     container_name: api-front
@@ -35,6 +33,12 @@ services:
       - "4200:4200"
     depends_on:
       - backend
-
+  seed:
+    build: ./projet-api-back
+    command: node seed.js
+    depends_on:
+      - mongo
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/apidb?authSource=admin
 volumes:
   mongo_data:

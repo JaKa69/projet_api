@@ -1,19 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { USER_CONFIG } from '../../model/generic-interface';
+import { GenericListComponent } from '../../common/generic-list-component/generic-list-component';
 import { UsersService } from '../../service/users.service';
 
 @Component({
   selector: 'app-users',
-  imports: [],
+  imports: [GenericListComponent],
   templateUrl: './users.component.html',
   styleUrl: './users.component.scss',
 })
-export class UsersComponent implements OnInit {
-  public users:any[] = []; 
-  constructor(
-    public usersService: UsersService
-  ) {}
-
-  async ngOnInit() {
-    this.users = await this.usersService.getUsers();
-  }
+export class UsersComponent {
+  config = USER_CONFIG;
+  service = inject(UsersService);
 }

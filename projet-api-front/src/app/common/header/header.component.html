@@ -5,14 +5,10 @@
               {{ item.label }}
             </a>
         }
-        @if (isLoggedIn) {
+        @if (authService.getConnectedName()) {
             <span>
-                Bonjour, {{ authService.user()?.email }}
+                Bonjour, {{ authService.getConnectedName() }}
                 <button (click)="logout()">Déconnexion</button>
-            </span>
-        } @else {
-            <span>
-                <button (click)="navigate('/login')">Connexion</button>
             </span>
         }
     </nav>

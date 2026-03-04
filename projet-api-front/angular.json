@@ -65,6 +65,9 @@
             },
             "development": {
               "buildTarget": "projet-api-front:build:development"
+            },
+            "options": {
+              "proxyConfig": "src/proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"

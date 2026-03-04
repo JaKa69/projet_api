@@ -1,9 +1,4 @@
-<h2>{{ isEdit ? 'Modifier' : 'Ajouter' }} un composant</h2>
-<form (ngSubmit)="save()">
-    <label>
-        Nom :
-        <input [(ngModel)]="component.name" name="name" required />
-    </label>
-    <button type="submit">{{ isEdit ? 'Mettre à jour' : 'Ajouter' }}</button>
-    <button type="button" (click)="cancel()">Annuler</button>
-</form>
+<app-generic-detail
+    [service]="service"
+    [config] = "config"
+/>

@@ -1,34 +1,43 @@
 import { Injectable, signal } from '@angular/core';
 import { ApiService } from './api.service';
+import { User } from '../model/User';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private jwt = signal<string | null>(null);
-  private currentUser = signal<any | null>(null);
-
   constructor(private api: ApiService) {}
 
   async login(email: string, password: string) {
-    const res = await this.api.post<{ token: string; user: any }>('/auth/login', { email, password });
-    this.jwt.set(res.token);
-    this.currentUser.set(res.user);
-    this.api.setToken(res.token); // pour ApiService
+    const res = await this.api.post<{ token: string; user: User }>('/auth/login', { email, password });
+    this.setConnectedName(res.user.firstname + " " + res.user.lastname);
+    this.setTokenString(res.token);
     return res.user;
   }
 
   logout() {
-    this.jwt.set(null);
-    this.currentUser.set(null);
-    this.api.setToken('');
+    this.setConnectedName("");
+    this.setTokenString("");
   }
 
-  isLoggedIn() {
-    return !!this.jwt();
-  }
+  async isLoggedIn() {
+    try {
+      const res: any = await this.api.get('/auth/isLoggedIn');
+        this.setTokenString(res.token)
+        return res.loggedIn;
 
-  user() {
-    return this.currentUser();
+    } catch {
+      return false;
+    }
+  }
+  //Localstorage front pour actualiser et envoyer le token
+  setConnectedName(val: string) {
+    localStorage.setItem("connectedName", val);
+  }
+  getConnectedName() {
+    return localStorage.getItem("connectedName") || "";
+  }
+  setTokenString(val: string) {
+    localStorage.setItem("token", val);
   }
 }

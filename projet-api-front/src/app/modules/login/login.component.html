@@ -1,1 +1,41 @@
-<p>login.component works!</p>
+<div style="max-width:400px;margin:80px auto;">
+  <h2>Connexion</h2>
+
+  <form (ngSubmit)="onSubmit()" #form="ngForm">
+
+    <div>
+      <label>Email</label>
+      <input
+        type="email"
+        name="email"
+        [(ngModel)]="email"
+        required
+        class="form-control"
+      />
+    </div>
+
+    <div style="margin-top:15px;">
+      <label>Mot de passe</label>
+      <input
+        type="password"
+        name="password"
+        [(ngModel)]="password"
+        required
+        class="form-control"
+      />
+    </div>
+
+    <button
+      type="submit"
+      [disabled]="form.invalid || loading"
+      style="margin-top:20px;width:100%;"
+    >
+      {{ loading ? 'Connexion...' : 'Se connecter' }}
+    </button>
+
+    <div *ngIf="error" style="color:red;margin-top:10px;">
+      {{ error }}
+    </div>
+
+  </form>
+</div>

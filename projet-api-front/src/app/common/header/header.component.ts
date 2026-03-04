@@ -1,16 +1,17 @@
-import { Component } from '@angular/core';
-import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from '../../service/auth.service';
-import { UsersService } from '../../service/users.service';
 
 @Component({
   selector: 'app-header',
-  imports: [RouterLink, RouterLinkActive],
+  imports: [],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
-menuItems = [
+  authService = inject(AuthService);
+  router = inject(Router);
+  menuItems = [
     { label: 'Catégories', path: '/categories' },
     { label: 'Composants', path: '/components' },
     { label: 'Utilisateurs', path: '/users' },
@@ -18,13 +19,8 @@ menuItems = [
     { label: 'Configurations', path: '/configurations' },
   ];
 
-  constructor(
-    private router: Router,
-    public authService: AuthService,
-    private usersService: UsersService
-  ) {}
-  get isLoggedIn(): boolean {
-    return !!this.authService.user();
+  get connectedName(): string {
+    return this.authService.getConnectedName();
   }
   navigate(path: string) {
     this.router.navigate([path]);
@@ -32,6 +28,6 @@ menuItems = [
 
   logout() {
     this.authService.logout();
-    this.router.navigate(['/login']);
+    this.navigate('/login');
   }
 }

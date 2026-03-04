@@ -1,29 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ComponentService } from '../../service/component.service';
-import { Router } from '@angular/router';
+import { COMPONENT_CONFIG } from '../../model/generic-interface';
+import { GenericListComponent } from '../../common/generic-list-component/generic-list-component';
 
 @Component({
   selector: 'app-components',
+  imports: [GenericListComponent],
   templateUrl: './components.component.html',
   styleUrls: ['./components.component.scss'],
 })
 export class ComponentsComponent {
-  public components: any[] = []; 
-
-  constructor(
-    public componentService: ComponentService,
-    private router: Router
-  ) {}
-
-  async ngOnInit() {
-    this.components = await this.componentService.getComponents();
-  }
-
-  goToAdd() {
-    this.router.navigate(['/components/add']);
-  }
-
-  goToEdit(id: string) {
-    this.router.navigate(['/components', id]);
-  }
+  config = COMPONENT_CONFIG;
+  service = inject(ComponentService);
 }

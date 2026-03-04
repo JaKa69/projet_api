@@ -1,0 +1,31 @@
+<h2>{{ config.title }}</h2>
+
+<button (click)="add()">Ajouter</button>
+
+<table>
+    <thead>
+    <tr>
+    @for (col of config.columns; track col.field) {
+        <th>{{ col.label }}</th>
+    }
+    <th>Actions</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    @for (item of items(); track item._id) {
+    <tr>
+
+    @for (col of config.columns; track col.field) {
+        <td>{{ item[col.field] }}</td>
+    }
+
+    <td>
+        <button (click)="edit(item._id)">Edit</button>
+        <button (click)="delete(item._id)">Delete</button>
+    </td>
+
+    </tr>
+    }
+    </tbody>
+</table>

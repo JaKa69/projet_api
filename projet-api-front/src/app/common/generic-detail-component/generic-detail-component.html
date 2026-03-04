@@ -1,0 +1,19 @@
+<h2>{{ config.title }}</h2>
+
+<form (ngSubmit)="save()">
+
+@for (field of config.fields; track field.field) {
+
+<label>{{ field.label }}</label>
+
+<input
+  [(ngModel)]="item[field.field]"
+  [name]="field.field"
+/>
+
+}
+
+<button type="submit">Save</button>
+<button type="button" (click)="cancel()">Cancel</button>
+
+</form>

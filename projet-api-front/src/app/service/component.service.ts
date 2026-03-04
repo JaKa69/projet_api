@@ -1,38 +1,31 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from './api.service';
+import { Component } from '../model/Component';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ComponentService {
-  componentUrl: string = "/components/";
+  starturi: string = "/components/";
 
   constructor(private api: ApiService) {}
+  getAll(): Promise<Component[]> {
+    return this.api.get(this.starturi);
+  }
   
-  async getComponents(filters?: any) {
-    let query = '';
-    if (filters) {
-      const params = new URLSearchParams();
-      if (filters.category) params.set('category', filters.category);
-      if (filters.brand) params.set('brand', filters.brand);
-      query = '?' + params.toString();
-    }
-    return this.api.get<any[]>(this.componentUrl + query);
+  getById(id: string): Promise<Component> {
+    return this.api.get(this.starturi + id);
   }
 
-  async getComponent(id: string | number) {
-    return this.api.get(this.componentUrl + `${id}`);
+  create(payload: Component) {
+    return this.api.post(this.starturi, payload);
   }
 
-  async createComponent(payload: any) {
-    return this.api.post(this.componentUrl, payload);
+  update(id: string, payload: Component) {
+    return this.api.put(this.starturi + id, payload);
   }
 
-  async updateComponent(id: string | number, payload: any) {
-    return this.api.put(this.componentUrl + `${id}`, payload);
-  }
-
-  async deleteComponent(id: string | number) {
-    return this.api.delete(this.componentUrl + `${id}`);
+  delete(id: string) {
+    return this.api.delete(this.starturi +id);
   }
 }

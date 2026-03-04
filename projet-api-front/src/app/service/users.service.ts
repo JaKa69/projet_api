@@ -1,33 +1,32 @@
-import { Injectable, signal } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { ApiService } from './api.service';
+import { User } from '../model/User';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UsersService {
-  users = signal<any[]>([]);
+
+  starturi: string = "/user/";
 
   constructor(private api: ApiService) {}
-
-  async getUsers() {
-    const data = await this.api.get<any[]>('/user/all');
-    this.users.set(data);
-    return data;
+  getAll(): Promise<User[]> {
+    return this.api.get(this.starturi +'all');
+  }
+  
+  getById(id: string): Promise<User> {
+    return this.api.get(this.starturi + id);
   }
 
-  async getUser(id: string | number) {
-    return this.api.get(`/users/${id}`);
+  create(payload: User) {
+    return this.api.post(this.starturi, payload);
   }
 
-  async createUser(payload: any) {
-    return this.api.post('/users', payload);
+  update(id: string, payload: User) {
+    return this.api.put(this.starturi + id, payload);
   }
 
-  async updateUser(id: string | number, payload: any) {
-    return this.api.put(`/users/${id}`, payload);
-  }
-
-  async deleteUser(id: string | number) {
-    return this.api.delete(`/users/${id}`);
+  delete(id: string) {
+    return this.api.delete(this.starturi +id);
   }
 }
