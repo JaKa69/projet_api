@@ -13,7 +13,7 @@ const calculateTotal = async (components) => {
 };
 
 module.exports.getByUser = (userId) =>
-  Configuration.find({ user: userId })
+  Configuration.find()
     .populate("components.component")
     .populate("components.price");
 

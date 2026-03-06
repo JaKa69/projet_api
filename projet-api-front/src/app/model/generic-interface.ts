@@ -92,7 +92,7 @@ export const COMPONENT_CONFIG: EntityConfig = {
 
   columns: [
     { field: 'title', label: 'Title' },
-    { field: 'category', label: 'Category' },
+    { field: 'category.name', label: 'Category' },
     { field: 'brand', label: 'Brand' },
     { field: 'model', label: 'Model' },
     { field: 'description', label: 'Description' },
@@ -119,24 +119,47 @@ export const CONFIGURATION_CONFIG: EntityConfig = {
     create: '/configurations/new',
     edit: '/configurations'
   },
-//TODO
-//   columns: [
-//     { field: 'title', label: 'Title' },
-//     { field: 'category', label: 'Category' },
-//     { field: 'brand', label: 'Brand' },
-//     { field: 'model', label: 'Model' },
-//     { field: 'description', label: 'Description' },
-//     { field: 'createdAt', label: 'Description' },
-//     { field: 'updatedAt', label: 'Description' },
-//   ],
+  columns: [
+    { field: 'user', label: 'User' },
+    { field: 'name', label: 'Name' },
+    { field: 'components', label: 'Components' },
+    { field: 'totalPrice', label: 'TotalPrice' },
+    { field: 'createdAt', label: 'Date de creation' },
+    { field: 'updatedAt', label: 'Date de mise à jour' }
+  ],
 
-//   fields: [
-//     { field: 'category', label: 'Nom', type: 'text' },
-//     { field: 'brand', label: 'Description', type: 'text' },
-//     { field: 'title', label: 'Description', type: 'text' },
-//     { field: 'model', label: 'Description', type: 'text' },
-//     { field: 'description', label: 'Description', type: 'text' },
-//     { field: 'specifications', label: 'Description', type: 'text' },
-//     { field: 'image', label: 'Description', type: 'text' }
+  fields: [
+    { field: '_id', label: 'ID', type: 'text' },
+    { field: 'user', label: 'Utilisateur', type: 'text' },
+    { field: 'name', label: 'Name', type: 'text' },
+    { field: 'components', label: 'Composants', type: 'text' },
+    { field: 'totalPrice', label: 'Prix total', type: 'text' },
+    { field: 'createdAt', label: 'Date de creation', type: 'text' },
+    { field: 'updatedAt', label: 'Date de mise à jour', type: 'text' }
+  ]
+};
+export const MERCHANT_CONFIG: EntityConfig = {
+  title: 'Marchants',
+
+  routes: {
+    list: '/merchants',
+    create: '/merchants/new',
+    edit: '/merchants'
+  },
+  columns: [
+    { field: 'name', label: 'Name' },
+    { field: 'websiteUrl', label: 'Url' },
+    { field: 'affiliateRate', label: 'affiliateRate' },
+    { field: 'conditions', label: 'conditions' },
+    { field: 'createdAt', label: 'Date de creation' },
+    { field: 'updatedAt', label: 'Date de mise à jour' }
+  ],
+
+  fields: [
+    { field: 'name', label: 'Name', type: 'text' },
+    { field: 'websiteUrl', label: 'Url', type: 'text' },
+    { field: 'affiliateRate', label: 'Rate', type: 'number' },
+    { field: 'createdAt', label: 'Date de creation', type: 'text' },
+    { field: 'updatedAt', label: 'Date de mise à jour', type: 'text' }
   ]
 };

@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, inject, Input, Output, signal } from '@angular/core';
 import { EntityConfig, ITableColumn } from '../../model/generic-interface';
 import { Router } from '@angular/router';
+import { PDFService } from '../../service/pdfservice';
 
 @Component({
   selector: 'app-generic-list',
@@ -12,16 +13,14 @@ import { Router } from '@angular/router';
 export class GenericListComponent {
   @Input() config!: EntityConfig;
   @Input() service!: any;
-
+  @Input() isUpload: boolean = false;
   loading = signal(true);
   items = signal<any[]>([]);
-
+  constructor(private pdfService: PDFService) {}
   private router = inject(Router);
   
   async ngOnInit() {
     const data = await this.service.getAll();
-
-    console.log('DATA RECEIVED', data);
 
     this.items.set(data);
     this.loading.set(false);
@@ -33,6 +32,10 @@ export class GenericListComponent {
 
   edit(id: string) {
     this.router.navigate([`${this.config.routes.edit}/${id}`]);
+  }
+  
+  upload(id: string) {
+    this.pdfService.savePdf(id, "TestBed.pdf" );
   }
 
   async delete(id: string) {

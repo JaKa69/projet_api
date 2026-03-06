@@ -21,6 +21,9 @@
     }
 
     <td>
+        @if (isUpload) {
+            <button (click)="upload(item._id)">Exporter en PDF</button>
+        }
         <button (click)="edit(item._id)">Edit</button>
         <button (click)="delete(item._id)">Delete</button>
     </td>

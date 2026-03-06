@@ -115,7 +115,7 @@ async function seed() {
   // CONFIGURATION DE TEST
 
   await Configuration.create({
-    user: guest._id,
+    user: admin._id,
     name: "Config Gaming",
     components: [
       {

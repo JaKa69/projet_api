@@ -1,28 +1,28 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from './api.service';
-import { User } from '../model/User';
+import { Configuration } from '../model/Configuration';
 
 @Injectable({
   providedIn: 'root',
 })
-export class UsersService {
-
-  starturi: string = "/user/";
+export class ConfigurationService {
+  starturi: string = "/configurations/";
 
   constructor(private api: ApiService) {}
-  getAll(): Promise<User[]> {
+  
+  getAll(): Promise<Configuration[]> {
     return this.api.get(this.starturi);
   }
   
-  getById(id: string): Promise<User> {
+  getById(id: string): Promise<Configuration> {
     return this.api.get(this.starturi + id);
   }
 
-  create(payload: User) {
+  create(payload: Configuration) {
     return this.api.post(this.starturi, payload);
   }
 
-  update(id: string, payload: User) {
+  update(id: string, payload: Configuration) {
     return this.api.put(this.starturi + id, payload);
   }
 

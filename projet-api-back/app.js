@@ -26,7 +26,7 @@ app.use('/api/merchants', merchantRoutes);
 app.use('/api/prices', priceRoutes);
 app.use('/api/configurations', configurationRoutes);
 app.use('/api/user', userconfigurationRoutes);
-app.use('/api', pdfRoutes);
+app.use('/api/pdf', pdfRoutes);
 
 // Swagger
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec, {

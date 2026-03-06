@@ -1,18 +1,37 @@
-const categoryService =require("../services/category.service.js");
+const categoryService = require("../services/category.service.js");
 
 module.exports.getAll = async (req, res) => {
-  res.json(await categoryService.getAll());
+  try {
+    const categories = await categoryService.getAll();
+    res.json(categories);
+  } catch (e) {
+    res.status(500).json({ message: e.message });
+  }
 };
 
 module.exports.create = async (req, res) => {
-  res.status(201).json(await categoryService.create(req.body));
+  try {
+    const category = await categoryService.create(req.body);
+    res.status(201).json(category);
+  } catch (e) {
+    res.status(500).json({ message: e.message });
+  }
 };
 
 module.exports.update = async (req, res) => {
-  res.json(await categoryService.update(req.params.id, req.body));
+  try {
+    const category = await categoryService.update(req.params.id, req.body);
+    res.json(category);
+  } catch (e) {
+    res.status(500).json({ message: e.message });
+  }
 };
 
 module.exports.remove = async (req, res) => {
-  await categoryService.remove(req.params.id);
-  res.status(204).end();
+  try {
+    await categoryService.remove(req.params.id);
+    res.status(204).end();
+  } catch (e) {
+    res.status(500).json({ message: e.message });
+  }
 };

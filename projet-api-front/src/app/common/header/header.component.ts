@@ -30,4 +30,7 @@ export class HeaderComponent {
     this.authService.logout();
     this.navigate('/login');
   }
+  onClick() {
+    window.open("localhost:8080/api-docs/")
+  }
 }

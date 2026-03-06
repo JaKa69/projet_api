@@ -1,13 +1,30 @@
 const request = require("supertest");
 const app = require("../app");
 
-describe("Configuration", () => {
+let token;
 
-  it("should not allow access without token", async () => {
-    const res = await request(app)
-      .get("/api/configurations");
+describe("Configuration API", () => {
 
-    expect(res.statusCode).toBe(401);
+  beforeAll(async () => {
+
+    const login = await request(app)
+      .post("/api/auth/login")
+      .send({
+        email: "test@test.com",
+        password: "123456"
+      });
+
+    token = login.body.token;
+
   });
 
+  it("should get my configurations", async () => {
+
+    const res = await request(app)
+      .get("/api/configurations")
+      .set("Authorization", `Bearer ${token}`);
+
+    expect(res.statusCode).toBe(200);
+
+  });
 });

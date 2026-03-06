@@ -21,7 +21,16 @@ module.exports.login = async (req, res) => {
       process.env.JWT_SECRET,
       { expiresIn: process.env.JWT_EXPIRATION || "1d" }
     );
-    res.status(200).json({ token, user });
+    res.status(200).json({ 
+      token,
+      user: {
+        id: user._id,
+        firstname: user.firstname,
+        lastname: user.lastname,
+        email: user.email,
+        role: user.role
+      }
+    });
   } catch (e) {
     res.status(500).json({ message: e.message });
   }
@@ -66,12 +75,10 @@ module.exports.isLoggedInAndAdmin = async (req, res) => {
       return res.status(401).json({ loggedIn: false });
 
     const token = authHeader.split(" ")[1];
-    console.log("l78 authcontroller " +token);
     const decoded = jwt.verify(
       token,
       process.env.JWT_SECRET
     );
-    console.log(decoded);
     if (decoded.role !== "admin") {
       return res.status(401).json({
       loggedIn: false
